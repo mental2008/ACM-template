@@ -1,0 +1,43 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}cstdio\PYGZgt{}}
+\PYG{c+c1}{//BUAA输入挂，可读\PYGZus{}\PYGZus{}int128}
+\PYG{k}{namespace} \PYG{n}{FastIO} \PYG{p}{\PYGZob{}}
+	\PYG{c+cp}{\PYGZsh{}define BUF\PYGZus{}SIZE 10000000 }\PYG{c+c1}{//缓冲区大小可修改}
+	\PYG{k+kt}{bool} \PYG{n}{IOError} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{c+c1}{//IOError == false 时表示处理到文件结尾}
+	\PYG{k+kr}{inline} \PYG{k+kt}{char} \PYG{n+nf}{NextChar}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+		\PYG{k}{static} \PYG{k+kt}{char} \PYG{n}{buf}\PYG{p}{[}\PYG{n}{BUF\PYGZus{}SIZE}\PYG{p}{],} \PYG{o}{*}\PYG{n}{p1} \PYG{o}{=} \PYG{n}{buf} \PYG{o}{+} \PYG{n}{BUF\PYGZus{}SIZE}\PYG{p}{,} \PYG{o}{*}\PYG{n}{pend} \PYG{o}{=} \PYG{n}{buf} \PYG{o}{+} \PYG{n}{BUF\PYGZus{}SIZE}\PYG{p}{;}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{p1} \PYG{o}{==} \PYG{n}{pend}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{p1} \PYG{o}{=} \PYG{n}{buf}\PYG{p}{;}
+			\PYG{n}{pend} \PYG{o}{=} \PYG{n}{buf} \PYG{o}{+} \PYG{n}{fread}\PYG{p}{(}\PYG{n}{buf}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{BUF\PYGZus{}SIZE}\PYG{p}{,} \PYG{n}{stdin}\PYG{p}{);}
+			\PYG{k}{if}\PYG{p}{(}\PYG{n}{pend} \PYG{o}{==} \PYG{n}{p1}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+				\PYG{n}{IOError} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+				\PYG{k}{return} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+			\PYG{p}{\PYGZcb{}}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k}{return} \PYG{o}{*}\PYG{n}{p1}\PYG{o}{++}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k+kr}{inline} \PYG{k+kt}{bool} \PYG{n+nf}{Blank}\PYG{p}{(}\PYG{k+kt}{char} \PYG{n}{c}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{c} \PYG{o}{==} \PYG{l+s+sc}{\PYGZsq{} \PYGZsq{}} \PYG{o}{||} \PYG{n}{c} \PYG{o}{==} \PYG{l+s+sc}{\PYGZsq{}\PYGZbs{}n\PYGZsq{}} \PYG{o}{||} \PYG{n}{c} \PYG{o}{==} \PYG{l+s+sc}{\PYGZsq{}\PYGZbs{}r\PYGZsq{}} \PYG{o}{||} \PYG{n}{c} \PYG{o}{==} \PYG{l+s+sc}{\PYGZsq{}\PYGZbs{}t\PYGZsq{}}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{k}{template}\PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T}\PYG{o}{\PYGZgt{}} \PYG{k+kr}{inline} \PYG{k+kt}{void} \PYG{n}{Read}\PYG{p}{(}\PYG{n}{T} \PYG{o}{\PYGZam{}}\PYG{n}{x}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k+kt}{char} \PYG{n}{c}\PYG{p}{;}
+		\PYG{k}{while}\PYG{p}{(}\PYG{n}{Blank}\PYG{p}{(}\PYG{n}{c} \PYG{o}{=} \PYG{n}{NextChar}\PYG{p}{()));}
+		\PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{IOError}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{k}{for}\PYG{p}{(}\PYG{n}{x} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}} \PYG{o}{\PYGZlt{}=} \PYG{n}{c} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{c} \PYG{o}{\PYGZlt{}=} \PYG{l+s+sc}{\PYGZsq{}9\PYGZsq{}}\PYG{p}{;} \PYG{n}{c} \PYG{o}{=} \PYG{n}{NextChar}\PYG{p}{())}
+				\PYG{n}{x} \PYG{o}{=} \PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{3}\PYG{p}{)} \PYG{o}{+} \PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{+} \PYG{n}{c} \PYG{o}{\PYGZhy{}} \PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+cm}{/*}
+\PYG{c+cm}{读入时候这样写：}
+
+\PYG{c+cm}{int x;}
+\PYG{c+cm}{FastIO::Read(x);}
+
+\PYG{c+cm}{若要处理到文件末尾可以这样写：}
+
+\PYG{c+cm}{while(FastIO::Read(x), FastIO::IOError == 0);}
+\PYG{c+cm}{*/}
+\end{Verbatim}

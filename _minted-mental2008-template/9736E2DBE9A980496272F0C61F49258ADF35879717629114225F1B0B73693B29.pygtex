@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// 整数 (int, long long)}
+\PYG{k}{template}\PYG{o}{\PYGZlt{}}\PYG{k}{typename} \PYG{n}{T}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{void} \PYG{n}{Read}\PYG{p}{(}\PYG{n}{T} \PYG{o}{\PYGZam{}}\PYG{n}{r}\PYG{p}{)\PYGZob{}}
+	\PYG{k+kt}{char} \PYG{n}{c}\PYG{p}{;}
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{c}\PYG{o}{=}\PYG{n}{getchar}\PYG{p}{())\PYGZob{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{isdigit}\PYG{p}{(}\PYG{n}{c}\PYG{p}{))\PYGZob{}}
+			\PYG{n}{r}\PYG{o}{=}\PYG{n}{c}\PYG{o}{\PYGZca{}}\PYG{l+m+mh}{0x30}\PYG{p}{;}\PYG{k}{break}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{isdigit}\PYG{p}{(}\PYG{n}{c}\PYG{o}{=}\PYG{n}{getchar}\PYG{p}{()))}
+		\PYG{n}{r}\PYG{o}{=}\PYG{n}{r}\PYG{o}{*}\PYG{l+m+mi}{10}\PYG{o}{+}\PYG{p}{(}\PYG{n}{c}\PYG{o}{\PYGZca{}}\PYG{l+m+mh}{0x30}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
