@@ -1,8 +1,11 @@
-\documentclass[a4paper,11pt]{article}
+\documentclass[a4paper,fleqn,11pt]{article}
 \usepackage{zh_CN-Adobefonts_external} % Simplified Chinese Support using external fonts (./fonts/zh_CN-Adobe/)
 \usepackage{fancyhdr}  % 页眉页脚
 \usepackage{minted}    % 代码高亮
 \usepackage[colorlinks]{hyperref}  % 目录可跳转
+\usepackage{indentfirst}
+\usepackage{amsmath}
+\setlength{\parindent}{0em}
 \setlength{\headheight}{15pt}
 
 % 定义页眉页脚
@@ -13,7 +16,7 @@
 \cfoot{\thepage}
 \rfoot{}
 
-\author{mental2008}   
+\author{mental2008}
 \title{Algorithm Library}
 
 \begin{document} 
@@ -22,34 +25,93 @@
 \newpage % 换页
 \tableofcontents % 目录
 
+% 图论 begin
 \newpage
 \section{图论} % 一级标题
+
+\subsection{网络流}
+
+\subsubsection{Dinic}
+\inputminted[breaklines]{c++}{graph/Dinic.cpp}
+
+\subsubsection{ISAP}
+\inputminted[breaklines]{c++}{graph/ISAP.cpp}
 %\subsection{最小生成树} % 二级标题
 %\subsubsection{Kruskal} % 三级标题
 %\inputminted[breaklines]{c++}{graph/kruskal.cpp} % 插入代码文件
-
-%\subsection{单源最短路}
-%\subsubsection{SPFA}
-%\inputminted[breaklines]{c++}{graph/spfa.cpp}
+% 图论 end
 
 %\twocolumn  % 分页显示
+
+% 字符串 begin
 \newpage
-\section{String}
+\section{字符串}
 %\subsection{KMP}
 %\inputminted[breaklines]{c++}{string/kmp.cpp}
 %\subsection{Suffix Automaton}
 %\inputminted[breaklines]{c++}{string/suffix-automaton.cpp}
+% 字符串 end
 
+% 数学 begin
+\newpage
+\section{数学}
+
+\subsection{阶乘逆元}
+\inputminted[breaklines]{c++}{math/Fiv.cpp}
+
+\subsection{组合数}
+\inputminted[breaklines]{c++}{math/Combination.cpp}
+
+\subsection{卡特兰数}
+
+卡特兰数是一种经典的组合数，经常出现在各种计算中，其前几项为 : 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786, 208012, 742900, 2674440, 9694845, 35357670, 129644790, 477638700, 1767263190, 6564120420, 24466267020, 91482563640, 343059613650, 1289904147324, 4861946401452, ...
+
+卡特兰数满足以下性质：
+
+令$h(0)=1,h(1)=1$,catalan数满足递推式。$h(n)=h(0)*h(n-1)+h(1)*h(n-2)+...+h(n-1)*h(0)$。如果能将公式化为上面这种类型，就是卡特兰数。
+
+通项公式：$h(n) = \tbinom{2n}{n} -\tbinom{2n}{n+1}$，或者$h(n) = \frac{1}{n+1}\tbinom{2n}{n}$。
+
+经典问题：出栈次序、二叉树构成问题、凸多边形的三角形划分。
+
+
+% 数学 end
+
+% 黑科技 begin
 \newpage
 \section{黑科技}
+
 \subsection{输入输出外挂}
 \subsubsection{简单快读}
 \inputminted[breaklines]{c++}{黑科技/QuickIO.cpp}
 \subsubsection{真·快速读入}
 \inputminted[breaklines]{c++}{黑科技/FastIO.cpp}
 
+\subsection{pbds库}
+\subsubsection{Hash}
+\inputminted[breaklines]{c++}{黑科技/Hash.cpp}
+\subsubsection{可并堆}
+\inputminted[breaklines]{c++}{黑科技/Heap.cpp}
+\subsubsection{Rope}
+\inputminted[breaklines]{c++}{黑科技/Rope.cpp}
 
-%\newpage
-%\section{Others}
+\subsection{FWT}
+例子：$C_k=\sum_{i|j=k}A_i×B_j,C_k=\sum_{i\&j=k}A_i×B_j,C_k=\sum_{i\oplus j=k}A_i×B_j$
+\inputminted[breaklines]{c++}{黑科技/Fwt.cpp}
+
+\subsection{曼哈顿距离与切比雪夫距离}
+曼哈顿距离: $d(i,j)=|x1-x2|+|y1-y2|$
+切比雪夫距离: $d(i,j)=max(|x1-x2|,|y1-y2|)$
+
+将一个点$(x,y)$的坐标变为$(x+y,x-y)$后
+原坐标系中的曼哈顿距离=新坐标系中的切比雪夫距离
+
+将一个点$(x,y)$的坐标变为$(\frac{x+y}{2},\frac{x-y}{2})$后
+原坐标系中的切比雪夫距离=新坐标系中的曼哈顿距离
+
+\subsection{Bitset}
+\inputminted[breaklines]{c++}{黑科技/Bitset.cpp}
+
+% 黑科技 end
 
 \end{document}

@@ -1,5 +1,12 @@
+/*
+ * 读入时候这样写:
+ * int x;
+ * FastIO::Read(x);
+ * 
+ * 若要处理到文件末尾可以这样写：
+ * while(FastIO::Read(x), FastIO::IOError == 0);
+ */
 #include<cstdio>
-//BUAA输入挂，可读__int128
 namespace FastIO {
 	#define BUF_SIZE 10000000 //缓冲区大小可修改
 	bool IOError = 0; //IOError == false 时表示处理到文件结尾
@@ -28,14 +35,3 @@ namespace FastIO {
 		}
 	}
 }
-
-/*
-读入时候这样写：
-
-int x;
-FastIO::Read(x);
-
-若要处理到文件末尾可以这样写：
-
-while(FastIO::Read(x), FastIO::IOError == 0);
-*/
